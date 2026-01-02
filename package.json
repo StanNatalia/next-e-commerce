@@ -9,8 +9,9 @@
     "lint": "eslint"
   },
   "dependencies": {
-    "@wix/sdk": "^1.9.1",
-    "@wix/stores": "^1.0.141",
+    "@wix/sdk": "^1.20.0",
+    "@wix/stores": "^1.0.606",
+    "isomorphic-dompurify": "^2.35.0",
     "js-cookie": "^3.0.5",
     "next": "16.0.10",
     "react": "19.2.1",
