@@ -20,7 +20,7 @@ const ProductList = ({ limit, categorySlug }: ProductsListProps) => {
   const visibleProducts = products.slice(0, limit || PRODUCT_PER_PAGE);
 
   return (
-    <div className="flex gap-x-8 gap-y-16 justify-between flex-wrap mt-12">
+    <div className="flex gap-x-8 gap-y-16 justify-start flex-wrap mt-12">
       {visibleProducts.map((product: Product) => {
         const imageUrl = product.media?.mainMedia?.image?.url || "/product.png";
 

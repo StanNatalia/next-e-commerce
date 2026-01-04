@@ -1,3 +1,4 @@
+import { categories } from "@/catalog/catalogs";
 import Filter from "@/components/Filter";
 import ProductList from "@/components/ProductList";
 import Image from "next/image";
@@ -10,6 +11,8 @@ interface ListPageProps {
 const ListPage = async ({ searchParams }: ListPageProps) => {
   const params = await searchParams;
   const categorySlug = params?.cat as string | undefined;
+
+  const category = categories.find((cat) => cat.slug === categorySlug);
 
   return (
     <div className="px-4 md:px-8 lg:px-16 xl:px-32 2xl:px-64 relative pb-20">
@@ -40,7 +43,9 @@ const ListPage = async ({ searchParams }: ListPageProps) => {
       <Filter />
 
       {/* PRODUCTS */}
-      <h2 className="mt-12 text-xl font-semibold">Shoes for You!</h2>
+      <h2 className="mt-12 text-xl font-semibold">
+        {category ? category.name : "Products"} for You!
+      </h2>
       <Suspense fallback={"loading..."}>
         <ProductList limit={20} categorySlug={categorySlug} />
       </Suspense>

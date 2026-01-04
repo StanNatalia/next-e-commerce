@@ -4,10 +4,23 @@ import Image from "next/image";
 import Link from "next/link";
 
 const CategoryList = async () => {
+  const allCategories = [
+    {
+      _id: "all",
+      name: "All Products",
+      slug: "all",
+      image: {
+        url: "https://images.pexels.com/photos/354939/pexels-photo-354939.jpeg",
+      },
+      products: [],
+    },
+    ...categories,
+  ];
+
   return (
     <div className="px-4 overflow-x-scroll scrollbar-hide">
       <div className="flex gap-4 md:gap-8">
-        {categories?.map((cat: Category) => (
+        {allCategories.map((cat: Category) => (
           <Link
             key={cat._id}
             href={`/list?cat=${cat.slug}`}
@@ -16,13 +29,13 @@ const CategoryList = async () => {
             <div className="relative bg-slate-100 w-full h-96">
               <Image
                 src={cat.image?.url || "cat.png"}
-                alt="photo"
+                alt={cat.name}
                 fill
                 sizes="20vw"
                 className="object-cover"
               />
             </div>
-            <h1 className="mt-8 font-light text-xl tracking-wide ">
+            <h1 className="mt-8 font-light text-xl tracking-wide">
               {cat.name}
             </h1>
           </Link>

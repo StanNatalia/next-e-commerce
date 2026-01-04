@@ -22,7 +22,7 @@ const ProductImages = ({ items }: { items: any }) => {
       >
         {items.map((item: any, i: number) => (
           <div
-            key={item._id}
+            key={i}
             className="w-1/4 h-32 relative gap-4 mt-8 cursor-pointer"
             onClick={() => setIndex(i)}
           >

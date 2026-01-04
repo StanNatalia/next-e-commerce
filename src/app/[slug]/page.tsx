@@ -42,7 +42,7 @@ const SinglePage = async ({ params }: { params: { slug: string } }) => {
         )}
 
         <div className="h-[2px] bg-gray-100" />
-        <CustomizeProducts />
+        {/* <CustomizeProducts /> */}
         <Add />
         <div className="h-[2px] bg-gray-100" />
         <div className="text-sm">

@@ -171,7 +171,6 @@ export const categories: Category[] = [
     ],
   },
 
-  // Новая категория: Accessories
   {
     _id: "cat-3",
     name: "Accessories",
@@ -257,7 +256,6 @@ export const categories: Category[] = [
     ],
   },
 
-  // Новая категория: Home
   {
     _id: "cat-4",
     name: "Home",
@@ -290,12 +288,12 @@ export const categories: Category[] = [
             },
             {
               image: {
-                url: "https://images.pexels.com/photos/256777/pexels-photo-256777.jpeg",
+                url: "https://images.pexels.com/photos/276147/pexels-photo-276147.jpeg",
               },
             },
             {
               image: {
-                url: "https://images.pexels.com/photos/1128112/pexels-photo-1128112.jpeg",
+                url: "https://images.pexels.com/photos/276147/pexels-photo-276147.jpeg",
               },
             },
           ],
@@ -307,7 +305,7 @@ export const categories: Category[] = [
         _id: "9002",
         name: "Кофейный набор",
         slug: "coffee-set",
-        price: { price: 120 },
+        price: { price: 20, discountedPrice: 15 },
         currency: "USD",
         category: "Дом",
         subCategory: "Посуда",
