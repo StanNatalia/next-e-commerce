@@ -38,10 +38,11 @@ const Filter = () => {
           name="category"
           id=""
           className="py-2 px-4 rounded-2xl text-xs font-medium bg-[#EBEDED]"
+          value={searchParams.get("category") || "all"}
           onChange={handleFilterChange}
         >
           <option>Category</option>
-
+          <option value="all">All</option>
           <option value="cloth">Cloth</option>
           <option value="accessories">Accessories</option>
           <option value="shoes">Shoes</option>
@@ -65,8 +66,6 @@ const Filter = () => {
           <option>Sort By</option>
           <option value="asc_price">Price(low to high)</option>
           <option value="desc_price">Price(hight to low)</option>
-          <option value="asc_lastUpdated">Newest</option>
-          <option value="desc_lastUpdated">Oldest</option>
         </select>
       </div>
     </div>

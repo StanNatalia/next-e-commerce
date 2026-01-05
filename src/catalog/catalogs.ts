@@ -13,7 +13,81 @@ export const categories: Category[] = [
         _id: "164",
         name: "Кроссовки Nike Air Max",
         slug: "nike-air-max",
-        price: { price: 150, discountedPrice: 120 },
+        price: { price: 100, discountedPrice: 92 },
+        currency: "USD",
+        category: "Обувь",
+        subCategory: "Кроссовки",
+        description:
+          "Удобные и стильные кроссовки Nike Air Max для повседневной носки и спорта.",
+        media: {
+          mainMedia: {
+            image: {
+              url: "https://images.pexels.com/photos/7651067/pexels-photo-7651067.jpeg",
+            },
+          },
+          items: [
+            {
+              image: {
+                url: "https://images.pexels.com/photos/7651067/pexels-photo-7651067.jpeg",
+              },
+            },
+            {
+              image: {
+                url: "https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg",
+              },
+            },
+            {
+              image: {
+                url: "https://images.pexels.com/photos/19090/pexels-photo.jpg",
+              },
+            },
+          ],
+        },
+        bestseller: true,
+        sizes: ["36", "37", "38", "39", "40"],
+      },
+      {
+        _id: "1641",
+        name: "Кроссовки Nike Air Max",
+        slug: "nike-air-max1",
+        price: { price: 100, discountedPrice: 92 },
+        currency: "USD",
+        category: "Обувь",
+        subCategory: "Кроссовки",
+        description:
+          "Удобные и стильные кроссовки Nike Air Max для повседневной носки и спорта.",
+        media: {
+          mainMedia: {
+            image: {
+              url: "https://images.pexels.com/photos/7651067/pexels-photo-7651067.jpeg",
+            },
+          },
+          items: [
+            {
+              image: {
+                url: "https://images.pexels.com/photos/7651067/pexels-photo-7651067.jpeg",
+              },
+            },
+            {
+              image: {
+                url: "https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg",
+              },
+            },
+            {
+              image: {
+                url: "https://images.pexels.com/photos/19090/pexels-photo.jpg",
+              },
+            },
+          ],
+        },
+        bestseller: true,
+        sizes: ["36", "37", "38", "39", "40"],
+      },
+      {
+        _id: "1645",
+        name: "Кроссовки Nike Air Max",
+        slug: "nike-air-max2",
+        price: { price: 100, discountedPrice: 92 },
         currency: "USD",
         category: "Обувь",
         subCategory: "Кроссовки",
@@ -50,7 +124,7 @@ export const categories: Category[] = [
         _id: "2345",
         name: "Adidas Ultraboost",
         slug: "adidas-ultraboost",
-        price: { price: 140 },
+        price: { price: 110, discountedPrice: 99 },
         currency: "USD",
         category: "Обувь",
         subCategory: "Кроссовки",
@@ -132,10 +206,121 @@ export const categories: Category[] = [
         sizes: ["S", "M", "L", "XL"],
       },
       {
+        _id: "3451",
+        name: "Футболка Oversize",
+        slug: "oversize-tshirt1",
+        price: { price: 45, discountedPrice: 35 },
+        currency: "USD",
+        category: "Одежда",
+        subCategory: "Футболки",
+        description:
+          "Стильная футболка Oversize из мягкого хлопка для повседневного образа.",
+        media: {
+          mainMedia: {
+            image: {
+              url: "https://images.pexels.com/photos/6311392/pexels-photo-6311392.jpeg",
+            },
+          },
+          items: [
+            {
+              image: {
+                url: "https://images.pexels.com/photos/6311392/pexels-photo-6311392.jpeg",
+              },
+            },
+            {
+              image: {
+                url: "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg",
+              },
+            },
+            {
+              image: {
+                url: "https://images.pexels.com/photos/7679720/pexels-photo-7679720.jpeg",
+              },
+            },
+          ],
+        },
+        bestseller: true,
+        sizes: ["S", "M", "L", "XL"],
+      },
+      {
+        _id: "3453",
+        name: "Футболка Oversize",
+        slug: "oversize-tshirt2",
+        price: { price: 45, discountedPrice: 35 },
+        currency: "USD",
+        category: "Одежда",
+        subCategory: "Футболки",
+        description:
+          "Стильная футболка Oversize из мягкого хлопка для повседневного образа.",
+        media: {
+          mainMedia: {
+            image: {
+              url: "https://images.pexels.com/photos/6311392/pexels-photo-6311392.jpeg",
+            },
+          },
+          items: [
+            {
+              image: {
+                url: "https://images.pexels.com/photos/6311392/pexels-photo-6311392.jpeg",
+              },
+            },
+            {
+              image: {
+                url: "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg",
+              },
+            },
+            {
+              image: {
+                url: "https://images.pexels.com/photos/7679720/pexels-photo-7679720.jpeg",
+              },
+            },
+          ],
+        },
+        bestseller: true,
+        sizes: ["S", "M", "L", "XL"],
+      },
+      {
+        _id: "3457",
+        name: "Футболка Oversize",
+        slug: "oversize-tshirt3",
+        price: { price: 45, discountedPrice: 35 },
+        currency: "USD",
+        category: "Одежда",
+        subCategory: "Футболки",
+        description:
+          "Стильная футболка Oversize из мягкого хлопка для повседневного образа.",
+        media: {
+          mainMedia: {
+            image: {
+              url: "https://images.pexels.com/photos/6311392/pexels-photo-6311392.jpeg",
+            },
+          },
+          items: [
+            {
+              image: {
+                url: "https://images.pexels.com/photos/6311392/pexels-photo-6311392.jpeg",
+              },
+            },
+            {
+              image: {
+                url: "https://images.pexels.com/photos/2983464/pexels-photo-2983464.jpeg",
+              },
+            },
+            {
+              image: {
+                url: "https://images.pexels.com/photos/7679720/pexels-photo-7679720.jpeg",
+              },
+            },
+          ],
+        },
+        bestseller: true,
+        sizes: ["S", "M", "L", "XL"],
+      },
+      {
         _id: "4234",
         name: "Худи с капюшоном",
         slug: "hoodie",
-        price: { price: 65 },
+        price: { price: 65, discountedPrice: 55 },
         currency: "USD",
         category: "Одежда",
         subCategory: "Худи",
@@ -183,7 +368,81 @@ export const categories: Category[] = [
         _id: "579",
         name: "Солнцезащитные очки",
         slug: "sunglasses",
-        price: { price: 60, discountedPrice: 50 },
+        price: { price: 30, discountedPrice: 25 },
+        currency: "USD",
+        category: "Аксессуары",
+        subCategory: "Очки",
+        description:
+          "Модные солнцезащитные очки с UV-защитой, подходят к любому образу.",
+        media: {
+          mainMedia: {
+            image: {
+              url: "https://images.pexels.com/photos/46710/pexels-photo-46710.jpeg",
+            },
+          },
+          items: [
+            {
+              image: {
+                url: "https://images.pexels.com/photos/46710/pexels-photo-46710.jpeg",
+              },
+            },
+            {
+              image: {
+                url: "https://images.pexels.com/photos/179909/pexels-photo-179909.jpeg",
+              },
+            },
+            {
+              image: {
+                url: "https://images.pexels.com/photos/45055/pexels-photo-45055.jpeg",
+              },
+            },
+          ],
+        },
+        bestseller: true,
+        sizes: [],
+      },
+      {
+        _id: "5791",
+        name: "Солнцезащитные очки",
+        slug: "sunglasses2",
+        price: { price: 30, discountedPrice: 25 },
+        currency: "USD",
+        category: "Аксессуары",
+        subCategory: "Очки",
+        description:
+          "Модные солнцезащитные очки с UV-защитой, подходят к любому образу.",
+        media: {
+          mainMedia: {
+            image: {
+              url: "https://images.pexels.com/photos/46710/pexels-photo-46710.jpeg",
+            },
+          },
+          items: [
+            {
+              image: {
+                url: "https://images.pexels.com/photos/46710/pexels-photo-46710.jpeg",
+              },
+            },
+            {
+              image: {
+                url: "https://images.pexels.com/photos/179909/pexels-photo-179909.jpeg",
+              },
+            },
+            {
+              image: {
+                url: "https://images.pexels.com/photos/45055/pexels-photo-45055.jpeg",
+              },
+            },
+          ],
+        },
+        bestseller: true,
+        sizes: [],
+      },
+      {
+        _id: "5796",
+        name: "Солнцезащитные очки",
+        slug: "sunglasses1",
+        price: { price: 30, discountedPrice: 25 },
         currency: "USD",
         category: "Аксессуары",
         subCategory: "Очки",
@@ -220,7 +479,7 @@ export const categories: Category[] = [
         _id: "6689",
         name: "Кожаный ремень",
         slug: "leather-belt",
-        price: { price: 45 },
+        price: { price: 60, discountedPrice: 55 },
         currency: "USD",
         category: "Аксессуары",
         subCategory: "Ремни",

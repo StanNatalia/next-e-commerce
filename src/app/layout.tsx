@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
-
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
-import { WixClientContextProvider } from "@/context/wixContext";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -18,11 +16,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <WixClientContextProvider>
-          <Navbar />
-          {children}
-          <Footer />
-        </WixClientContextProvider>
+        <Navbar />
+        {children}
+        <Footer />
       </body>
     </html>
   );

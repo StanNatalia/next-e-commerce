@@ -1,5 +1,6 @@
 import { categories } from "@/catalog/catalogs";
 import Filter from "@/components/Filter";
+
 import ProductList from "@/components/ProductList";
 import Image from "next/image";
 import React, { Suspense } from "react";
