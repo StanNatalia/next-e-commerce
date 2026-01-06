@@ -6,7 +6,6 @@ import { categories } from "@/catalog/catalogs";
 import { Product } from "@/types/catalog";
 import { useSearchParams } from "next/navigation";
 import Pagination from "./Pagination";
-import { useEffect, useState } from "react";
 
 type ProductListProps = {
   limit?: number;
@@ -17,7 +16,7 @@ const ITEMS_PER_PAGE = 8;
 const ProductList = ({ limit }: ProductListProps) => {
   const searchParams = useSearchParams();
 
-  const categorySlug = searchParams.get("category") || "all";
+  const categorySlug = searchParams.get("cat") || "all";
   const minPrice = Number(searchParams.get("min") || 0);
   const maxPrice = Number(searchParams.get("max") || Infinity);
   const sort = searchParams.get("sort") || "";

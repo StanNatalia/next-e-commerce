@@ -48,7 +48,7 @@ const ListPage = async ({ searchParams }: ListPageProps) => {
         {category ? category.name : "Products"} for You!
       </h2>
       <Suspense fallback={"loading..."}>
-        <ProductList limit={20} categorySlug={categorySlug} />
+        <ProductList />
       </Suspense>
     </div>
   );
