@@ -11,6 +11,7 @@
   "dependencies": {
     "@wix/sdk": "^1.20.0",
     "@wix/stores": "^1.0.606",
+    "axios": "^1.13.2",
     "isomorphic-dompurify": "^2.35.0",
     "js-cookie": "^3.0.5",
     "next": "16.0.10",
