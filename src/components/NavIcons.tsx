@@ -3,21 +3,31 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CartModal from "./CartModal";
+import { useAuth } from "@/context/AuthContext";
+import toast from "react-hot-toast";
 
 const NavIcons = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
 
+  const { isLoggedIn, setIsLoggedIn } = useAuth();
+
   const router = useRouter();
 
-  //TEMPORARY
-  const isLoggedIn = false;
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    setIsLoggedIn(false);
+    setIsProfileOpen(false);
+    router.push("/login");
+    toast.success("You have successfully logged out of your account");
+  };
 
   const handleProfile = () => {
     if (!isLoggedIn) {
       router.push("/login");
+      return;
     }
     setIsProfileOpen((prev) => !prev);
   };
@@ -37,7 +47,9 @@ const NavIcons = () => {
           <Link href="/" className="">
             Profile
           </Link>
-          <div className="mt-2 cursor-pointer">Logout</div>
+          <div className="mt-2 cursor-pointer" onClick={handleLogout}>
+            Logout
+          </div>
         </div>
       )}
       <Image

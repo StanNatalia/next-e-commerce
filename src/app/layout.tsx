@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import "./globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import { AuthProvider } from "@/context/AuthContext";
+import { Toaster } from "react-hot-toast";
+import { CartProvider } from "@/context/CartContext";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,9 +19,14 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <Navbar />
-        {children}
-        <Footer />
+        <AuthProvider>
+          <CartProvider>
+            <Navbar />
+            {children}
+            <Footer />
+            <Toaster position="top-right" reverseOrder={false} />
+          </CartProvider>
+        </AuthProvider>
       </body>
     </html>
   );

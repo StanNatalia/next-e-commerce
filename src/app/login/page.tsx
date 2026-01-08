@@ -1,7 +1,10 @@
 "use client";
 
+import { useAuth } from "@/context/AuthContext";
 import { loginUser, registerUser } from "@/services/auth";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 
 enum MODE {
   LOGIN = "LOGIN",
@@ -16,14 +19,9 @@ const LoginPage = () => {
   const [password, setPassword] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token) {
-      setIsLoggedIn(true);
-    }
-  });
+  const router = useRouter();
+  const { setIsLoggedIn } = useAuth();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -33,42 +31,24 @@ const LoginPage = () => {
     try {
       if (mode === MODE.REGISTER) {
         const data = await registerUser({ name: username, email, password });
-        console.log("REGISTER SUCCESS:", data);
+        setIsLoggedIn(true);
+        router.push("/");
+        toast.success("Registration was successfully!");
       }
 
       if (mode === MODE.LOGIN) {
         const data = await loginUser({ email, password });
-        console.log("LOGIN SUCCESS:", data);
+        setIsLoggedIn(true);
+        router.push("/");
+        toast.success("You are logged into your account!");
       }
     } catch (err: any) {
       setError(err.response?.data?.message || "Something went wrong");
+      toast.error("Something went wrong...Try again");
     } finally {
       setIsLoading(false);
     }
   };
-
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    setIsLoggedIn(false);
-    setEmail("");
-    setPassword("");
-    setUsername("");
-    setMode(MODE.LOGIN);
-  };
-
-  if (isLoggedIn) {
-    return (
-      <div className="h-[calc(100vh-80px)] flex items-center justify-center flex-col gap-4">
-        <h1 className="text-xl font-semibold">You are logged in!</h1>
-        <button
-          onClick={handleLogout}
-          className="bg-red-500 text-white p-2 rounded-md hover:bg-red-600"
-        >
-          Logout
-        </button>
-      </div>
-    );
-  }
 
   const formTitle = mode === MODE.LOGIN ? "Log in" : "Register";
   const buttonTitle = mode === MODE.LOGIN ? "Log in" : "Register";
