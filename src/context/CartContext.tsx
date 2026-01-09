@@ -12,11 +12,13 @@ export interface CartItem {
 
 interface CartContextType {
   cartItems: CartItem[];
-  addToCart: (item: CartItem) => void;
+  addItem: (item: CartItem) => void;
   removeFromCart: (id: string) => void;
   clearCart: () => void;
   getTotalQuantity: () => number;
   getSubtotal: () => number;
+  increaseQty: (id: string) => void;
+  decreaseQty: (id: string) => void;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -24,16 +26,14 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
 
-  const addToCart = (item: CartItem) => {
+  const addItem = (item: CartItem) => {
     setCartItems((prev) => {
       const exist = prev.find((i) => i.id === item.id);
       if (exist) {
-        // если товар уже есть — увеличиваем количество
         return prev.map((i) =>
           i.id === item.id ? { ...i, quantity: i.quantity + item.quantity } : i
         );
       } else {
-        // иначе добавляем новый товар
         return [...prev, item];
       }
     });
@@ -53,15 +53,35 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
     return cartItems.reduce((acc, item) => acc + item.price * item.quantity, 0);
   };
 
+  const increaseQty = (id: string) => {
+    setCartItems((prev) =>
+      prev.map((item) =>
+        item.id === id ? { ...item, quantity: item.quantity + 1 } : item
+      )
+    );
+  };
+
+  const decreaseQty = (id: string) => {
+    setCartItems((prev) =>
+      prev
+        .map((item) =>
+          item.id === id ? { ...item, quantity: item.quantity - 1 } : item
+        )
+        .filter((item) => item.quantity > 0)
+    );
+  };
+
   return (
     <CartContext.Provider
       value={{
         cartItems,
-        addToCart,
+        addItem,
         removeFromCart,
         clearCart,
         getTotalQuantity,
         getSubtotal,
+        increaseQty,
+        decreaseQty,
       }}
     >
       {children}

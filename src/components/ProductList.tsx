@@ -6,6 +6,8 @@ import { categories } from "@/catalog/catalogs";
 import { Product } from "@/types/catalog";
 import { useSearchParams } from "next/navigation";
 import Pagination from "./Pagination";
+import toast from "react-hot-toast";
+import { useCart } from "@/context/CartContext";
 
 type ProductListProps = {
   limit?: number;
@@ -15,6 +17,7 @@ const ITEMS_PER_PAGE = 8;
 
 const ProductList = ({ limit }: ProductListProps) => {
   const searchParams = useSearchParams();
+  const { addItem } = useCart();
 
   const categorySlug = searchParams.get("cat") || "all";
   const minPrice = Number(searchParams.get("min") || 0);
@@ -51,6 +54,20 @@ const ProductList = ({ limit }: ProductListProps) => {
   const start = (page - 1) * ITEMS_PER_PAGE;
   const end = start + ITEMS_PER_PAGE;
   const paginatedProducts = limit ? products : products.slice(start, end);
+
+  const handleAddToCart = (e: React.MouseEvent, product: Product) => {
+    e.preventDefault();
+    e.stopPropagation();
+
+    addItem({
+      id: product._id,
+      name: product.name,
+      price: product.price.price,
+      quantity: 1,
+      image: product.media?.mainMedia?.image?.url || "/product.png",
+    });
+    toast.success("Added to cart");
+  };
 
   return (
     <div className="flex flex-col gap-14">
@@ -90,7 +107,10 @@ const ProductList = ({ limit }: ProductListProps) => {
                 <span className="font-semibold">${product.price.price}</span>
               </div>
 
-              <button className="rounded-2xl ring-1 w-max ring-lama text-lama py-2 px-4 text-xs hover:bg-lama hover:text-white">
+              <button
+                className="rounded-2xl ring-1 w-max ring-lama text-lama py-2 px-4 text-xs hover:bg-lama hover:text-white"
+                onClick={(e) => handleAddToCart(e, product)}
+              >
                 Add to Cart
               </button>
             </Link>

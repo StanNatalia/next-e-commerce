@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import CartModal from "./CartModal";
 import { useAuth } from "@/context/AuthContext";
 import toast from "react-hot-toast";
+import { useCart } from "@/context/CartContext";
 
 const NavIcons = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
@@ -31,6 +32,8 @@ const NavIcons = () => {
     }
     setIsProfileOpen((prev) => !prev);
   };
+
+  const { getTotalQuantity } = useCart();
 
   return (
     <div className=" flex items-center gap-4 xl:gap-6 relative">
@@ -71,7 +74,7 @@ const NavIcons = () => {
           className="cursor-pointer"
         />
         <div className="absolute -top-4 -right-4 w-6 h-6 bg-lama rounded-full text-white text-sm flex justify-center items-center">
-          2
+          {getTotalQuantity()}
         </div>
       </div>
 

@@ -4,7 +4,7 @@ import { useCart } from "@/context/CartContext";
 import Image from "next/image";
 
 const CartModal = () => {
-  const { cartItems, removeFromCart } = useCart();
+  const { cartItems, removeFromCart, increaseQty, decreaseQty } = useCart();
 
   const subtotal = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
@@ -12,7 +12,7 @@ const CartModal = () => {
   );
 
   return (
-    <div className="w-80 absolute p-4 rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)] bg-white -left-20 top-12 ring-0 flex flex-col gap-6 z-20">
+    <div className="w-80 absolute p-4 rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)] bg-white right-0 top-12 ring-0 flex flex-col gap-6 z-20">
       {cartItems.length === 0 ? (
         <div className="">Cart is Empty</div>
       ) : (
@@ -36,7 +36,26 @@ const CartModal = () => {
                     </div>
                   </div>
                   <div className="flex justify-between text-sm">
-                    <span className="text-gray-500">Qty. {item.quantity}</span>
+                    <div className="flex justify-between items-center text-sm">
+                      <div className="flex items-center gap-2">
+                        <button
+                          className="w-6 h-6 flex items-center justify-center border rounded"
+                          onClick={() => decreaseQty(item.id)}
+                        >
+                          −
+                        </button>
+
+                        <span>{item.quantity}</span>
+
+                        <button
+                          className="w-6 h-6 flex items-center justify-center border rounded"
+                          onClick={() => increaseQty(item.id)}
+                        >
+                          +
+                        </button>
+                      </div>
+                    </div>
+
                     <span
                       className="text-blue-500 cursor-pointer"
                       onClick={() => removeFromCart(item.id)}
