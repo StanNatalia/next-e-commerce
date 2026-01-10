@@ -12,10 +12,12 @@
     "@wix/sdk": "^1.20.0",
     "@wix/stores": "^1.0.606",
     "axios": "^1.13.2",
+    "formik": "^2.4.9",
     "isomorphic-dompurify": "^2.35.0",
     "js-cookie": "^3.0.5",
     "next": "16.0.10",
     "react": "19.2.1",
+    "react-confetti": "^6.4.0",
     "react-dom": "19.2.1",
     "react-hot-toast": "^2.6.0",
     "router": "^2.2.0"

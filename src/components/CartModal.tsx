@@ -2,9 +2,12 @@
 
 import { useCart } from "@/context/CartContext";
 import Image from "next/image";
+import CheckoutModal from "./CheckoutMofal";
+import { useState } from "react";
 
 const CartModal = () => {
   const { cartItems, removeFromCart, increaseQty, decreaseQty } = useCart();
+  const [showCheckout, setShowCheckout] = useState(false);
 
   const subtotal = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
@@ -77,9 +80,18 @@ const CartModal = () => {
               <button className="rounded-md py-3 px-4 ring-1 ring-gray-300">
                 View Cart
               </button>
-              <button className="rounded-md py-3 px-4 bg-black text-white">
+              <button
+                className="rounded-md py-3 px-4 bg-black text-white"
+                onClick={() => setShowCheckout(true)}
+              >
                 Checkout
               </button>
+              {showCheckout && (
+                <CheckoutModal
+                  subtotal={subtotal}
+                  onClose={() => setShowCheckout(false)}
+                />
+              )}
             </div>
           </div>
         </>
