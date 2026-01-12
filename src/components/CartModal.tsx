@@ -89,6 +89,7 @@ const CartModal = () => {
               {showCheckout && (
                 <CheckoutModal
                   subtotal={subtotal}
+                  cartItems={cartItems}
                   onClose={() => setShowCheckout(false)}
                 />
               )}

@@ -1,11 +1,23 @@
 import { Field, Form, Formik } from "formik";
+import { formatPrice } from "../../utils";
 
 type CheckoutModalProps = {
   onClose: () => void;
   subtotal: number;
+  cartItems: {
+    id: string;
+    name: string;
+    image: string;
+    price: number;
+    quantity: number;
+  }[];
 };
 
-const CheckoutModal = ({ onClose, subtotal }: CheckoutModalProps) => {
+const CheckoutModal = ({
+  onClose,
+  subtotal,
+  cartItems,
+}: CheckoutModalProps) => {
   return (
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-30">
       <div className="bg-white rounded-lg p-6 w-[90%] max-w-xl">
@@ -14,7 +26,7 @@ const CheckoutModal = ({ onClose, subtotal }: CheckoutModalProps) => {
         </h2>
 
         <hr className="border-gray-400 mb-6" />
-        <div className="flex gap-10 ">
+        <div className="flex gap-6 items-start justify-center">
           <Formik
             initialValues={{
               firstName: "",
@@ -30,7 +42,7 @@ const CheckoutModal = ({ onClose, subtotal }: CheckoutModalProps) => {
             }}
           >
             {() => (
-              <Form className="flex flex-col gap-3 mb-4">
+              <Form className="flex flex-col gap-3 mb-4 w-full">
                 <h2 className="font-semibold text-lg mb-4">Customer details</h2>
                 <div className="flex flex-col gap-3 mb-6">
                   <Field
@@ -89,7 +101,7 @@ const CheckoutModal = ({ onClose, subtotal }: CheckoutModalProps) => {
                 <div className="flex gap-3 justify-end mt-4">
                   <button
                     type="button"
-                    className="px-4 py-2 border rounded-md"
+                    className="w-full px-4 py-2 border rounded-md"
                     onClick={onClose}
                   >
                     Cancel
@@ -97,7 +109,7 @@ const CheckoutModal = ({ onClose, subtotal }: CheckoutModalProps) => {
 
                   <button
                     type="submit"
-                    className="px-4 py-2 bg-black text-white rounded-md"
+                    className="w-full px-4 py-2 bg-black text-white rounded-md"
                   >
                     Continue
                   </button>
@@ -105,11 +117,40 @@ const CheckoutModal = ({ onClose, subtotal }: CheckoutModalProps) => {
               </Form>
             )}
           </Formik>
-          <div className="bg-gray-300">
+          <div className="bg-gray-200 rounded-lg w-full p-3">
             <h2 className="font-semibold text-lg mb-4">Order Summary</h2>
-            <hr className="border-gray-400 mb-6" />
-            <p className="text-sm mt-2">
-              Total amount: <b>${subtotal}</b>
+
+            <hr className="border-gray-300 mb-4 mt-4" />
+            <div className="flex flex-col gap-3">
+              {cartItems.map((item) => (
+                <div key={item.id} className="flex gap-3 items-center">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="w-14 h-14 object-cover rounded"
+                  />
+                  <div className="text-sm">
+                    <p className="font-medium">{item.name}</p>
+                    <p>
+                      {item.quantity} × ${item.price}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <hr className="border-gray-300 mt-4 mb-4" />
+            <p className="text-sm mt-2 flex justify-between">
+              Subtotal <b>{formatPrice(subtotal)}</b>
+            </p>
+            <p className="text-sm mt-2 flex justify-between">
+              Delivery <b>Free</b>
+            </p>
+            <p className="text-sm mt-2 flex justify-between">
+              Sales Tax <b>{formatPrice(0)}</b>
+            </p>
+            <hr className="border-gray-300 mb-4 mt-4" />
+            <p className="text-sm mt-2 flex justify-between">
+              Total <b>{formatPrice(subtotal)}</b>
             </p>
           </div>
         </div>
