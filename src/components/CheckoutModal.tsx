@@ -34,6 +34,9 @@ const CheckoutModal = ({
   cartItems,
 }: CheckoutModalProps) => {
   const [isSuccessOpen, setIsSuccessOpen] = useState(false);
+  const [customerFirstName, setCustomerFirstName] = useState("");
+  const [customerLastName, setCustomerLastName] = useState("");
+
   return (
     <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-30">
       <div className="bg-white rounded-lg p-6 w-[90%] max-w-xl">
@@ -55,6 +58,8 @@ const CheckoutModal = ({
             }}
             validationSchema={checkoutValidationSchema}
             onSubmit={(values, { resetForm }) => {
+              setCustomerLastName(values.lastName);
+              setCustomerFirstName(values.firstName);
               setIsSuccessOpen(true);
               resetForm();
             }}
@@ -189,6 +194,8 @@ const CheckoutModal = ({
           </Formik>
           {isSuccessOpen && (
             <SuccessModal
+              firstName={customerFirstName}
+              lastName={customerLastName}
               onClose={() => {
                 setIsSuccessOpen(false);
                 onClose();
