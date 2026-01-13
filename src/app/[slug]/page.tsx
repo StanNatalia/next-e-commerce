@@ -1,8 +1,6 @@
 import { categories } from "@/catalog/catalogs";
 import Add from "@/components/Add";
-import CustomizeProducts from "@/components/CustomizeProducts";
 import ProductImages from "@/components/ProductImages";
-import React from "react";
 
 const SinglePage = async ({ params }: { params: { slug: string } }) => {
   const { slug } = await params;
@@ -42,8 +40,8 @@ const SinglePage = async ({ params }: { params: { slug: string } }) => {
         )}
 
         <div className="h-[2px] bg-gray-100" />
-        {/* <CustomizeProducts /> */}
-        <Add />
+
+        <Add product={product} />
         <div className="h-[2px] bg-gray-100" />
         <div className="text-sm">
           <h4 className="font-medium mb-4">Return Policy</h4>

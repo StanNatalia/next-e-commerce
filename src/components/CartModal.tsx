@@ -2,7 +2,7 @@
 
 import { useCart } from "@/context/CartContext";
 import Image from "next/image";
-import CheckoutModal from "./CheckoutMofal";
+import CheckoutModal from "./CheckoutModal";
 import { useState } from "react";
 
 const CartModal = () => {

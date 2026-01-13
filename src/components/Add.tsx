@@ -1,8 +1,14 @@
 "use client";
 import React, { useState } from "react";
+import AddToCart from "./AddToCart";
+import { Product } from "@/types/catalog";
 
-const Add = () => {
-  const [quantity, setQuantity] = useState(0);
+type Props = {
+  product: Product;
+};
+
+const Add = ({ product }: Props) => {
+  const [quantity, setQuantity] = useState(1);
 
   //TEMPORARI
   const stock = 4;
@@ -42,9 +48,7 @@ const Add = () => {
             {""} miss it
           </div>
         </div>
-        <button className="w-36 text-sm rounded-3xl ring-1 ring-lama text-lama py-2 px-4 hover:bg-lama hover:text-white disabled:cursor-not-allowed disabled:bg-pink-200 disabled:text-white">
-          Add to Card
-        </button>
+        <AddToCart product={product} quantity={quantity} />
       </div>
     </div>
   );

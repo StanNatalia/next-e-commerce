@@ -75,7 +75,7 @@ const ProductList = ({ limit }: ProductListProps) => {
         {paginatedProducts.map((product: Product) => {
           const imageUrl =
             product.media?.mainMedia?.image?.url || "/product.png";
-          const hoverImageUrl = product.media?.items?.[0]?.image?.url || null;
+          const hoverImageUrl = product.media?.items?.[1]?.image?.url || null;
 
           return (
             <Link
@@ -83,13 +83,13 @@ const ProductList = ({ limit }: ProductListProps) => {
               href={"/" + product.slug}
               className="w-full flex flex-col gap-4 sm:w-[45%] lg:w-[22%]"
             >
-              <div className="relative w-full h-80 group">
+              <div className="relative w-full h-80 group overflow-hidden rounded-md">
                 <Image
                   src={imageUrl}
                   alt={product.name}
                   fill
                   sizes="25vw"
-                  className="absolute object-cover rounded-md z-10 transition-opacity duration-500 group-hover:opacity-0"
+                  className="object-cover absolute rounded-md z-10 transition-opacity duration-500 group-hover:opacity-0"
                 />
                 {hoverImageUrl && (
                   <Image
@@ -97,7 +97,7 @@ const ProductList = ({ limit }: ProductListProps) => {
                     alt={product.name}
                     fill
                     sizes="25vw"
-                    className="absolute object-cover rounded-md"
+                    className=" object-cover absolute z-0 transition-opacity duration-500 opacity-0 rounded-md group-hover:opacity-100"
                   />
                 )}
               </div>
