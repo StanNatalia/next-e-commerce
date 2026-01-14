@@ -19,6 +19,7 @@ const checkoutValidationSchema = Yup.object({
 type CheckoutModalProps = {
   onClose: () => void;
   subtotal: number;
+  closeCart: () => void;
   cartItems: {
     id: string;
     name: string;
@@ -38,8 +39,14 @@ const CheckoutModal = ({
   const [customerLastName, setCustomerLastName] = useState("");
 
   return (
-    <div className="fixed inset-0 bg-black/40 flex items-center justify-center z-30">
-      <div className="bg-white rounded-lg p-6 w-[90%] max-w-xl">
+    <div
+      className="fixed inset-0 bg-black/40 flex items-center justify-center z-30"
+      onClick={onClose}
+    >
+      <div
+        className="bg-white rounded-lg p-6 w-[90%] max-w-xl"
+        onClick={(e) => e.stopPropagation()}
+      >
         <h2 className="text-2xl font-semibold mb-8 uppercase">
           Lamashop <span className="tracking-widest font-normal">checkout</span>
         </h2>

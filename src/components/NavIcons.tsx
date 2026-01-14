@@ -3,15 +3,27 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import CartModal from "./CartModal";
 import { useAuth } from "@/context/AuthContext";
 import toast from "react-hot-toast";
 import { useCart } from "@/context/CartContext";
+import CheckoutModal from "./CheckoutModal";
 
 const NavIcons = () => {
   const [isProfileOpen, setIsProfileOpen] = useState(false);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isCheckoutOpen, setIsCheckoutOpen] = useState(false);
+  const [checkoutData, setCheckoutData] = useState<{
+    subtotal: number;
+    cartItems: {
+      id: string;
+      name: string;
+      image: string;
+      price: number;
+      quantity: number;
+    }[];
+  } | null>(null);
 
   const { isLoggedIn, setIsLoggedIn } = useAuth();
 
@@ -78,7 +90,36 @@ const NavIcons = () => {
         </div>
       </div>
 
-      {isCartOpen && <CartModal />}
+      {isCartOpen && (
+        <CartModal
+          onClose={() => setIsCartOpen(false)}
+          onCheckout={(subtotal, cartItems) => {
+            setIsCartOpen(false);
+
+            const formattedCartItems = cartItems.map((item) => ({
+              id: item._id,
+              name: item.name,
+              image: item.media?.mainMedia?.image?.url || "",
+              price: item.price.price,
+              quantity: item.quantity || 1,
+            }));
+
+            setCheckoutData({
+              subtotal,
+              cartItems: formattedCartItems,
+            });
+            setIsCheckoutOpen(true);
+          }}
+        />
+      )}
+
+      {isCheckoutOpen && checkoutData && (
+        <CheckoutModal
+          subtotal={checkoutData.subtotal}
+          cartItems={checkoutData.cartItems}
+          onClose={() => setIsCheckoutOpen(false)}
+        />
+      )}
     </div>
   );
 };

@@ -5,25 +5,26 @@ import Image from "next/image";
 import CheckoutModal from "./CheckoutModal";
 import { useState } from "react";
 
-const CartModal = () => {
+type CartModalProps = {
+  onClose: () => void;
+  onCheckout: (subtotal: number, cartItems: any[]) => void;
+};
+
+const CartModal = ({ onClose, onCheckout }: CartModalProps) => {
   const { cartItems, removeFromCart, increaseQty, decreaseQty } = useCart();
-  const [showCheckout, setShowCheckout] = useState(false);
-  const [isOpen, setIsOpen] = useState(true);
 
   const subtotal = cartItems.reduce(
     (acc, item) => acc + item.price * item.quantity,
     0
   );
 
-  if (!isOpen) return null;
-
   return (
     <div
       className="fixed inset-0 bg-black/40 z-20 flex justify-end"
-      onClick={() => setIsOpen(false)}
+      onClick={onClose}
     >
       <div
-        className="w-80 absolute p-4 rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)] bg-white right-0 top-12 ring-0 flex flex-col gap-6 z-20"
+        className="w-80 absolute p-4 rounded-md shadow-[0_3px_10px_rgb(0,0,0,0.2)] bg-white right-10 top-[80px] ring-0 flex flex-col gap-6 z-20"
         onClick={(e) => e.stopPropagation()}
       >
         {cartItems.length === 0 ? (
@@ -89,17 +90,10 @@ const CartModal = () => {
               <div className="flex text-sm mt-6 justify-end">
                 <button
                   className="rounded-md py-3 px-4 bg-black text-white"
-                  onClick={() => setShowCheckout(true)}
+                  onClick={() => onCheckout(subtotal, cartItems)}
                 >
                   Checkout
                 </button>
-                {showCheckout && (
-                  <CheckoutModal
-                    subtotal={subtotal}
-                    cartItems={cartItems}
-                    onClose={() => setShowCheckout(false)}
-                  />
-                )}
               </div>
             </div>
           </>
