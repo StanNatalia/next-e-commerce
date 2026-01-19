@@ -10,7 +10,6 @@ type Props = {
 const Add = ({ product }: Props) => {
   const [quantity, setQuantity] = useState(1);
 
-  //TEMPORARI
   const stock = 4;
 
   const handleQuantity = (type: "i" | "d") => {
@@ -45,7 +44,7 @@ const Add = ({ product }: Props) => {
           <div className="text-xs">
             Only <span className="text-orange-500">4 items</span> left!
             <br /> {"Don't"}
-            {""} miss it
+            miss it
           </div>
         </div>
         <AddToCart product={product} quantity={quantity} />

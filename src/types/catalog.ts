@@ -11,6 +11,7 @@ export type Product = {
   subCategory: string;
   description: string;
   bestseller: boolean;
+  quantity: number;
   sizes: string[];
   media: {
     mainMedia?: {
@@ -34,4 +35,25 @@ export type Category = {
     url?: string;
   };
   products: Product[];
+};
+
+type Price = {
+  price: number;
+  discountedPrice?: number;
+};
+
+export type CartItem = {
+  _id?: string;
+  name: string;
+  image?: string;
+  price?: number;
+  quantity: number;
+};
+
+export type CheckoutCartItem = {
+  _id: string;
+  name: string;
+  image: string;
+  price: number;
+  quantity: number;
 };

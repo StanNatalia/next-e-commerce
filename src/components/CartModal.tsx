@@ -35,13 +35,16 @@ const CartModal = ({ onClose, onCheckout }: CartModalProps) => {
             <div className="flex flex-col gap-4">
               {cartItems.map((item) => (
                 <div key={item.id} className="flex gap-4">
-                  <Image
-                    src={item.image}
-                    alt={item.name}
-                    width={72}
-                    height={96}
-                    className="object-cover rounded-md"
-                  />
+                  <div className="w-[70px] h-[70px] relative rounded-md overflow-hidden flex-shrink-0">
+                    <Image
+                      src={item.image}
+                      alt={item.name}
+                      fill
+                      sizes="70px"
+                      className="object-cover"
+                    />
+                  </div>
+
                   <div className="flex flex-col justify-between w-full">
                     <div className="flex items-center justify-between gap-8">
                       <h3 className="font-semibold">{item.name}</h3>

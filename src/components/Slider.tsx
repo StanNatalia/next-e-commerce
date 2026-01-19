@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const slides = [
@@ -34,6 +35,8 @@ const slides = [
 const Slider = () => {
   const [current, setCurrent] = useState(0);
 
+  const router = useRouter();
+
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev === slides.length - 1 ? 0 : prev + 1));
@@ -43,7 +46,6 @@ const Slider = () => {
 
   return (
     <div className="relative h-[calc(100vh-80px)] overflow-hidden">
-      {/* SLIDES */}
       <div
         className="w-max flex h-full transition-all ease-in-out duration-1000"
         style={{ transform: `translateX(-${current * 100}vw)` }}
@@ -53,7 +55,6 @@ const Slider = () => {
             key={slide.id}
             className={`${slide.bg} w-screen h-full flex flex-col gap-16 xl:flex-row`}
           >
-            {/* TEXT */}
             <div className="h-1/2 xl:w-1/2 xl:h-full flex flex-col justify-center items-center gap-8 2xl:gap-12 text-center">
               <h2 className="text-xl lg:text-3xl 2xl:text-5xl">
                 {slide.description}
@@ -61,20 +62,19 @@ const Slider = () => {
               <h1 className="text-5xl lg:text-6xl 2xl:text-8xl font-semibold">
                 {slide.title}
               </h1>
-              <Link href={slide.url}>
+              <Link href="/list">
                 <button className="rounded-md bg-black text-white py-3 px-4">
                   SHOP NOW
                 </button>
               </Link>
             </div>
 
-            {/* IMAGE */}
             <div className="h-1/2 xl:w-1/2 xl:h-full relative">
               <Image
                 src={slide.img}
                 alt={slide.title}
                 fill
-                sizes="100vw"
+                sizes="(max-width: 1279px) 100vw, 50vw"
                 className="object-cover"
               />
             </div>
@@ -82,7 +82,6 @@ const Slider = () => {
         ))}
       </div>
 
-      {/* DOTS */}
       <div className="absolute left-1/2 bottom-8 -translate-x-1/2 flex gap-4">
         {slides.map((slide, index) => (
           <div

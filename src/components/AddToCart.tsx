@@ -16,8 +16,8 @@ const AddToCart = ({ product, quantity }: Props) => {
     addItem({
       id: product._id,
       name: product.name,
-      price: product.price.price,
-      quantity: 1,
+      price: product.price?.discountedPrice ?? product.price?.price,
+      quantity: quantity,
       image: product.media?.mainMedia?.image?.url || "/product.png",
     });
 

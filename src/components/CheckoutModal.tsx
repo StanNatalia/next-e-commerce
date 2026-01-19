@@ -3,6 +3,7 @@ import { formatPrice } from "../../utils";
 import * as Yup from "yup";
 import { useState } from "react";
 import SuccessModal from "./SuccessModal.tsx";
+import { CartItem, CheckoutCartItem } from "@/types/catalog";
 
 const checkoutValidationSchema = Yup.object({
   firstName: Yup.string().min(2, "Too shot").required("First name is required"),
@@ -19,14 +20,7 @@ const checkoutValidationSchema = Yup.object({
 type CheckoutModalProps = {
   onClose: () => void;
   subtotal: number;
-  closeCart: () => void;
-  cartItems: {
-    id: string;
-    name: string;
-    image: string;
-    price: number;
-    quantity: number;
-  }[];
+  cartItems: CheckoutCartItem[];
 };
 
 const CheckoutModal = ({
@@ -214,17 +208,20 @@ const CheckoutModal = ({
 
             <hr className="border-gray-300 mb-4 mt-4" />
             <div className="flex flex-col gap-3">
-              {cartItems.map((item) => (
-                <div key={item.id} className="flex gap-3 items-center">
+              {cartItems.map((item, index) => (
+                <div
+                  key={`${item._id}-${index}`}
+                  className="flex gap-3 items-center"
+                >
                   <img
-                    src={item.image}
+                    src={item.image || "/placeholder.png"}
                     alt={item.name}
                     className="w-14 h-14 object-cover rounded"
                   />
                   <div className="text-sm">
                     <p className="font-medium">{item.name}</p>
                     <p>
-                      {item.quantity} × ${item.price}
+                      {item.quantity ?? 1} ×{item.price}$
                     </p>
                   </div>
                 </div>
